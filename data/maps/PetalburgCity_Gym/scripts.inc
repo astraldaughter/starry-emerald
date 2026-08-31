@@ -1278,10 +1278,9 @@ PetalburgCity_Gym_Text_ReceivedBalanceBadge:
 	.string "from DAD!$"
 
 PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis:
-	.string "DAD: With that BADGE, the DEFENSE\n"
-	.string "of all your POKéMON will increase.\p"
-	.string "POKéMON that know the HM move SURF\n"
-	.string "will be able to travel over water.\p"
+	.string "DAD: With that BADGE, POKéMON that\n"
+	.string "know the HM move SURF will be able to\l"
+	.string "travel over water.\p"
 	.string "This is my gift to you. {PLAYER}, I'm\n"
 	.string "sure you can use it correctly.$"
 

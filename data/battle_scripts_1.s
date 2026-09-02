@@ -232,6 +232,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectCalmMind               @ EFFECT_CALM_MIND
 	.4byte BattleScript_EffectDragonDance            @ EFFECT_DRAGON_DANCE
 	.4byte BattleScript_EffectCamouflage             @ EFFECT_CAMOUFLAGE
+	.4byte BattleScript_EffectRestoreHpOther		 @ EFFECT_RESTORE_HP_OTHER
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2803,6 +2804,20 @@ BattleScript_EffectCamouflage::
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNCHANGEDTYPE
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectRestoreHpOther::
+	attackcanceler
+	attackstring
+	ppreduce
+	tryhealhalfhealth BattleScript_AlreadyAtFullHp, BS_TARGET
+	attackanimation
+	waitanimation
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	printstring STRINGID_PKMNREGAINEDHEALTH
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 

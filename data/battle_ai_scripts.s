@@ -2801,6 +2801,8 @@ AI_DoubleBattle:
 	if_move MOVE_MAGNITUDE, AI_DoubleBattleAllHittingGroundMove
 	if_equal TYPE_ELECTRIC, AI_DoubleBattleElectricMove
 	if_equal TYPE_FIRE, AI_DoubleBattleFireMove
+	// discourage heal pulse being used if not targeting an ally
+	if_move MOVE_HEAL_PULSE, Score_Minus30
 	get_ability AI_USER
 	if_not_equal ABILITY_GUTS, AI_DoubleBattleCheckUserStatus
 	if_has_move AI_USER_PARTNER, MOVE_HELPING_HAND, AI_DoubleBattlePartnerHasHelpingHand
@@ -2876,6 +2878,7 @@ AI_TryStatusMoveOnAlly:
 	if_move MOVE_TOXIC, AI_TryStatusOnAlly
 	if_move MOVE_HELPING_HAND, AI_TryHelpingHandOnAlly
 	if_move MOVE_SWAGGER, AI_TrySwaggerOnAlly
+	if_move MOVE_HEAL_PULSE, AI_TryHealPulseOnAlly
 	goto Score_Minus30_
 
 AI_TrySkillSwapOnAlly:
@@ -2927,6 +2930,13 @@ AI_TrySwaggerOnAlly2:
 	score +3
 AI_TrySwaggerOnAlly_End:
 	end
+
+AI_TryHealPulseOnAlly:
+	if_hp_less_than AI_TARGET, 25, AI_TryHealPulseOnAlly2
+	if_hp_less_than AI_TARGET, 50, Score_Plus2
+
+AI_TryHealPulseOnAlly2:
+	goto Score_Plus3
 
 Score_Minus30_:
 	score -30

@@ -371,6 +371,7 @@ gBattleAnims_Moves::
 	.4byte Move_WATER_PULSE
 	.4byte Move_DOOM_DESIRE
 	.4byte Move_PSYCHO_BOOST
+	.4byte Move_HEAL_PULSE
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -9925,6 +9926,24 @@ WeatherBallIce:
 	playsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET
 	call IceCrystalEffectShort
 	waitforvisualfinish
+	end
+
+Move_HEAL_PULSE:
+	loadspritegfx ANIM_TAG_THIN_RING
+	loadspritegfx ANIM_TAG_BLUE_STAR
+	monbg ANIM_ATK_PARTNER
+	setalpha 8, 8
+	playsewithpan SE_M_MILK_DRINK, SOUND_PAN_ATTACKER
+	simple_palette_blend selector=F_PAL_ATTACKER, delay=3, initial_blend_y=7, target_blend_y=0, color=RGB(17, 31, 25)
+	createsprite gThinRingExpandingSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 0, 0
+	waitforvisualfinish
+	playsewithpan SE_SHINY, SOUND_PAN_ATTACKER
+	blend_color_cycle priority=2, selector=F_PAL_ATK_SIDE, delay=0, num_blends=2, initial_blend_y=0, target_blend_y=10, color=RGB_WHITE
+	waitforvisualfinish
+	delay 8
+	call HealingEffect2
+	clearmonbg ANIM_ATK_PARTNER
+	blendoff
 	end
 
 Move_COUNT:

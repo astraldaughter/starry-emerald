@@ -233,6 +233,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDragonDance            @ EFFECT_DRAGON_DANCE
 	.4byte BattleScript_EffectCamouflage             @ EFFECT_CAMOUFLAGE
 	.4byte BattleScript_EffectRestoreHpOther		 @ EFFECT_RESTORE_HP_OTHER
+	.4byte BattleScript_EffectBlizzard				 @ EFFECT_BLIZZARD
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -1921,6 +1922,10 @@ BattleScript_SolarBeamOnFirstTurn::
 BattleScript_EffectThunder::
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
+	goto BattleScript_EffectHit
+
+BattleScript_EffectBlizzard::
+	setmoveeffect MOVE_EFFECT_BLIZZARD
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTeleport::

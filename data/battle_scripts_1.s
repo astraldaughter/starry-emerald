@@ -1925,7 +1925,7 @@ BattleScript_EffectThunder::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectBlizzard::
-	setmoveeffect MOVE_EFFECT_BLIZZARD
+	setmoveeffect MOVE_EFFECT_FREEZE
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTeleport::

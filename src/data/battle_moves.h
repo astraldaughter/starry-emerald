@@ -4983,4 +4983,32 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED,
         .category= MOVE_CATEGORY_STATUS,
     },
+
+    [MOVE_FOUL_ODOR] =
+    {
+        .effect = EFFECT_ACCURACY_DOWN,
+        .power = 0,
+        .type = TYPE_POISON,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .category= MOVE_CATEGORY_STATUS,
+    },
+
+    [MOVE_STUN_NEEDLE] =
+    {
+        .effect = EFFECT_PARALYZE_HIT,
+        .power = 15,
+        .type = TYPE_BUG,
+        .accuracy = 100,
+        .pp = 35,
+        .secondaryEffectChance = 30,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .category= MOVE_CATEGORY_PHYSICAL,
+    },
 };

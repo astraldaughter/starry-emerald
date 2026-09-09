@@ -372,6 +372,8 @@ gBattleAnims_Moves::
 	.4byte Move_DOOM_DESIRE
 	.4byte Move_PSYCHO_BOOST
 	.4byte Move_HEAL_PULSE
+	.4byte Move_FOUL_ODOR
+	.4byte Move_STUN_NEEDLE
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -9943,6 +9945,38 @@ Move_HEAL_PULSE:
 	delay 8
 	call HealingEffect2
 	clearmonbg ANIM_ATK_PARTNER
+	blendoff
+	end
+
+Move_FOUL_ODOR:
+	loadspritegfx ANIM_TAG_PINK_PETAL
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_PINK_PETAL, 0, 6, 6, RGB(30, 0, 31)	
+	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
+	createsprite gSweetScentPetalSpriteTemplate, ANIM_ATTACKER, 2, 100, 0, 100
+	delay 25
+	setpan 0
+	call SweetScentEffect
+	createsprite gSweetScentPetalSpriteTemplate, ANIM_ATTACKER, 2, 55, 0
+	playsewithpan SE_M_PSYBEAM, SOUND_PAN_TARGET
+	blend_color_cycle priority=2, selector=F_PAL_DEF_SIDE, delay=1, num_blends=5, initial_blend_y=5, target_blend_y=13, color=RGB(30, 0, 31)
+	call SweetScentEffect
+	waitforvisualfinish
+	end
+
+Move_STUN_NEEDLE:
+	loadspritegfx ANIM_TAG_NEEDLE
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	splitbgprio ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_RAZOR_WIND2, SOUND_PAN_ATTACKER
+	create_linear_stinger_sprite ANIM_TARGET, 2, initial_x=20, initial_y=0, target_x=-8, target_y=0, duration=20
+	waitforvisualfinish
+	create_basic_hitsplat_sprite ANIM_ATTACKER, 3, x=0, y=0, relative_to=ANIM_TARGET, animation=2
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 5, 1
+	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
 	blendoff
 	end
 

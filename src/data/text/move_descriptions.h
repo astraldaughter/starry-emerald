@@ -1421,6 +1421,14 @@ static const u8 sHealPulseDescription[] = _(
     "Recovers up to half the\n"
     "target's maximum HP.");
 
+static const u8 sFoulOdorDescription[] = _(
+    "Emits an eye-watering stench\n"
+    "that lowers accuracy.");
+
+static const u8 sStunNeedleDescription[] = _(
+    "An attack with barbs, etc.,\n"
+    "that may paralyze.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -1779,4 +1787,6 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_DOOM_DESIRE - 1] = sDoomDesireDescription,
     [MOVE_PSYCHO_BOOST - 1] = sPsychoBoostDescription,
     [MOVE_HEAL_PULSE - 1] = sHealPulseDescription,
+    [MOVE_FOUL_ODOR - 1] = sFoulOdorDescription,
+    [MOVE_STUN_NEEDLE - 1] = sStunNeedleDescription,
 };

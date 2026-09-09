@@ -357,8 +357,10 @@
 #define MOVE_DOOM_DESIRE 353
 #define MOVE_PSYCHO_BOOST 354
 #define MOVE_HEAL_PULSE 355
+#define MOVE_FOUL_ODOR 356
+#define MOVE_STUN_NEEDLE 357
 
-#define MOVES_COUNT 356
+#define MOVES_COUNT 358
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

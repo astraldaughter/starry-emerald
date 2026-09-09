@@ -2840,6 +2840,22 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboStarterId = 0,
         .comboMoves = {0},
     },
+
+    [MOVE_FOUL_ODOR] =
+    {
+        .effect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
+        .contestCategory = CONTEST_CATEGORY_SMART,
+        .comboStarterId = 0,
+        .comboMoves = {COMBO_STARTER_SMOG},
+    },
+
+    [MOVE_STUN_NEEDLE] =
+    {
+        .effect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
+        .contestCategory = CONTEST_CATEGORY_SMART,
+        .comboStarterId = 0,
+        .comboMoves = {COMBO_STARTER_CHARGE},
+    },
 };
 
 const struct ContestEffect gContestEffects[] =
